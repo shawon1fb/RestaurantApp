@@ -1,0 +1,51 @@
+name: restaurant_app
+description: A new Flutter application.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^0.1.2
+  feather_icons_flutter: ^4.7.4
+  font_awesome_flutter: ^8.5.0
+  flat_icons_flutter: ^1.0.2
+  dots_indicator: ^1.0.0
+  geolocator: 3.0.0
+  google_maps_flutter: ^0.5.21
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - images/
+  fonts:
+    - family: ReemKufi
+      fonts:
+        - asset: fonts/ReemKufi-Regular.ttf
+
+    - family: Poppins Light
+      fonts:
+        - asset: fonts/Poppins-Light.ttf
+
+    - family: Poppins Medium
+      fonts:
+        - asset: fonts/Poppins-Medium.ttf
+
+    - family: Poppins Regular
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+
+    - family: Poppins SemiBold
+      fonts:
+        - asset: fonts/Poppins-SemiBold.ttf
