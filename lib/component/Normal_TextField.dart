@@ -2,17 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/Constant/constant.dart';
 
 class NormalTextField extends StatelessWidget {
-  NormalTextField({this.hint,@required this.inputType});
+  NormalTextField({
+    this.hint,
+    @required this.inputType,
+    this.validator,
+    this.OnSaved,
+    this.key,
+  });
+
   final hint;
   final TextInputType inputType;
+
+  final Function validator;
+  final Function OnSaved;
+  final Key key;
+
   @override
   Widget build(BuildContext context) {
-    return  TextFormField(
+    return TextFormField(
+      autofocus: true,
+      key: key,
       style: KInputTextStyle,
-     textInputAction: TextInputAction.next,
+      validator: validator,
+      onSaved: OnSaved,
+      textInputAction: TextInputAction.next,
       keyboardType: inputType,
       decoration: InputDecoration(
-
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.grey,

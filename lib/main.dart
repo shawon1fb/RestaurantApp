@@ -5,8 +5,12 @@ import 'package:restaurant_app/Constant/constant.dart';
 import 'package:restaurant_app/Constant/OnBosrdPageList.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'screen/Auth/AuthPage.dart';
+//import 'package:map_view/map_view.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  //MapView.setApiKey("<AIzaSyC0m1YZ3MVlKaDrattMQAlDLM7LsBV9Cm0>");
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -102,7 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   backgroundColor: Colors.red,
                   label: Padding(
-                    padding: EdgeInsets.only(top: 50.0,bottom: 50.0,left: 50.0,right: 50.0),
+                    padding: EdgeInsets.only(
+                        top: 50.0, bottom: 50.0, left: 50.0, right: 50.0),
                     child: Text(
                       'Get Started',
                       style: TextStyle(

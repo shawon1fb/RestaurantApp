@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:restaurant_app/CustomeLibrary/CustomeFlatButton.dart';
 import 'package:restaurant_app/Constant/constant.dart';
+import 'package:restaurant_app/screen/DashBord/Profile.dart';
+import 'package:restaurant_app/screen/DashBord/SearchPage.dart';
+import 'package:restaurant_app/screen/DashBord/ReviewPage.dart';
 
 class BottomBar extends StatefulWidget {
   BottomBar({this.Home, this.Favorite});
@@ -23,7 +26,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.10,
+      height: MediaQuery.of(context).size.height * 0.12,
       decoration: BoxDecoration(
         color: Colors.blue,
         gradient: LinearGradient(
@@ -89,7 +92,12 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: () => {},
+                onPressed: () => {   Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ReviewPage(),
+                  ),
+                )},
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),
@@ -111,7 +119,14 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(),
+                    ),
+                  )
+                },
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),
@@ -133,7 +148,14 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SearchPage(),
+                    ),
+                  )
+                },
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),

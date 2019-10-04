@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:restaurant_app/component/BottomBar.dart';
+import 'package:restaurant_app/Constant/constant.dart';
+import 'package:restaurant_app/component/FoodItemCard.dart';
 
 class FavoritePage extends StatefulWidget {
   @override
@@ -11,144 +13,106 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
+        elevation: 0.0,
         title: Text(
           '15 Nearby Restaurants',
+          style: TextStyle(
+            color: Colors.black,
+          ),
         ),
       ),
       body: SafeArea(
-          child: Column(
-        children: <Widget>[
-          Card(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    padding: EdgeInsets.all(30.0),
-                    child: Image.asset(
-                      'images/on_boading_page1.png',
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Burger Quen'),
-                      Text('Restaurant-Fastfood-Chinese'),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: <Widget>[
-                      IconButton(
-                          icon: Icon(
-                            FeatherIcons.heart,
-                            color: Colors.red,
-                          ),
-                          onPressed: null),
-                      Text('open'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: ListView(
+            children: <Widget>[
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+              FoodItemCard(
+                imagePath: 'images/berger.png',
+                Title: 'Burger Quen',
+                Subtitle: 'Restaurant-Fastfood-Chinese',
+                RatingPoint: '4.5',
+                Rating: '(129 rating)',
+                isopen: 'Open',
+              ),
+            ],
           ),
-
-          Card(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    padding: EdgeInsets.all(30.0),
-                    child: Image.asset(
-                      'images/on_boading_page1.png',
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Burger Quen'),
-                      Text('Restaurant-Fastfood-Chinese'),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: <Widget>[
-                      IconButton(
-                          icon: Icon(
-                            FeatherIcons.heart,
-                            color: Colors.red,
-                          ),
-                          onPressed: null),
-                      Text('open'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Card(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    padding: EdgeInsets.all(30.0),
-                    child: Image.asset(
-                      'images/on_boading_page1.png',
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Burger Quen'),
-                      Text('Restaurant-Fastfood-Chinese'),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: <Widget>[
-                      IconButton(
-                          icon: Icon(
-                            FeatherIcons.heart,
-                            color: Colors.red,
-                          ),
-                          onPressed: null),
-                      Text('open'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-
-
-
-        ],
-      )),
+        ),
+      ),
       bottomNavigationBar: BottomBar(
         Home: () {
           Navigator.pop(context);

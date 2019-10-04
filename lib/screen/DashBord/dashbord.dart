@@ -19,8 +19,18 @@ class _DashBoardState extends State<DashBoard> {
 
   static final CameraPosition _Coord = CameraPosition(
     target: LatLng(latitude, longitude),
-    zoom: 10.0,
+    zoom: 14.0,
   );
+
+  Marker marker;
+  void getMarker(){
+    marker= Marker(
+      markerId: MarkerId('myPosition'),
+      position: LatLng(latitude, longitude),
+      infoWindow: InfoWindow(title: 'my location'),
+    );
+  }
+
 
   void getLocation() async {
     try {
@@ -53,8 +63,8 @@ class _DashBoardState extends State<DashBoard> {
   @override
   void initState() {
     // TODO: implement initState
-    getLocation();
     super.initState();
+     getLocation();
   }
 
   void FavoriteButton() {
@@ -70,14 +80,15 @@ class _DashBoardState extends State<DashBoard> {
     return Scaffold(
       body: Container(
         child: GoogleMap(
-            initialCameraPosition: _Coord,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            }),
+          initialCameraPosition: _Coord,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+        ),
       ),
       bottomNavigationBar: BottomBar(
         Home: _goToTheLake,
-        Favorite:FavoriteButton ,
+        Favorite: FavoriteButton,
       ),
     );
   }

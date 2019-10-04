@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Constant/constant.dart';
+
 class RedButton extends StatelessWidget {
-  RedButton({@required this.text});
+  RedButton({@required this.text, this.onPress});
+
   final text;
+  final Function onPress;
+
   @override
   Widget build(BuildContext context) {
-    return  Align(
+    return Align(
       alignment: Alignment.center,
       child: FlatButton(
         padding: EdgeInsets.all(15.0),
         color: Colors.red,
         disabledColor: Colors.red,
-        onPressed: null,
+        //onPressed: onPress,
         child: Align(
             alignment: Alignment.center,
             child: Text(
