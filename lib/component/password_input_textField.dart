@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class PasswordTextField extends StatefulWidget {
-  PasswordTextField({this.hint, this.validator, this.OnSaved});
+  PasswordTextField({this.hint, this.validator, this.OnSaved,this.focusNode,this.onFieldSubmitted});
 
   final hint;
+  final FocusNode focusNode;
   final Function validator;
   final Function OnSaved;
+  final Function onFieldSubmitted;
 
   @override
   _PasswordTextFieldState createState() => _PasswordTextFieldState(hint: hint);
@@ -20,6 +22,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted:widget.onFieldSubmitted,
+      focusNode:widget.focusNode,
       autofocus: true,
       obscureText: passwordVisible,
       onSaved: widget.OnSaved,

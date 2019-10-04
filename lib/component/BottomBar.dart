@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
-import 'package:restaurant_app/CustomeLibrary/CustomeFlatButton.dart';
 import 'package:restaurant_app/Constant/constant.dart';
 import 'package:restaurant_app/screen/DashBord/Profile.dart';
 import 'package:restaurant_app/screen/DashBord/SearchPage.dart';
 import 'package:restaurant_app/screen/DashBord/ReviewPage.dart';
+import 'package:restaurant_app/screen/DashBord/dashbord.dart';
 
 class BottomBar extends StatefulWidget {
-  BottomBar({this.Home, this.Favorite});
+  BottomBar(
+      {this.Home, this.Favorite, this.Natification, this.profile, this.Searce});
 
-  final Function Home, Favorite;
+  final Function Home;
+  final Function Favorite;
+  final Function Natification;
+  final Function profile;
+  final Function Searce;
 
   @override
-  _BottomBarState createState() =>
-      _BottomBarState(Home: Home, Favorite: Favorite);
+  _BottomBarState createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  _BottomBarState({this.Home, this.Favorite});
-
   double paddingg = 5.0;
   Color icon_color = Color(0xFF8F8D8D);
-  final Function Home, Favorite;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: Home,
+                onPressed: widget.Home,
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),
@@ -70,7 +71,7 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: Favorite,
+                onPressed: widget.Favorite,
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),
@@ -92,12 +93,7 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: () => {   Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ReviewPage(),
-                  ),
-                )},
+                onPressed: widget.Natification,
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),
@@ -119,14 +115,7 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfilePage(),
-                    ),
-                  )
-                },
+                onPressed: widget.profile,
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),
@@ -148,14 +137,7 @@ class _BottomBarState extends State<BottomBar> {
             Expanded(
               flex: 1,
               child: FlatButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SearchPage(),
-                    ),
-                  )
-                },
+                onPressed: widget.Searce,
                 color: Colors.white,
                 padding:
                     EdgeInsets.symmetric(horizontal: paddingg, vertical: 15.0),

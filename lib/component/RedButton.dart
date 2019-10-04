@@ -15,7 +15,7 @@ class RedButton extends StatelessWidget {
         padding: EdgeInsets.all(15.0),
         color: Colors.red,
         disabledColor: Colors.red,
-        //onPressed: onPress,
+        onPressed: onPress,
         child: Align(
             alignment: Alignment.center,
             child: Text(

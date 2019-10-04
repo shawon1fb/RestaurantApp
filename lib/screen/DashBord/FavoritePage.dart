@@ -113,12 +113,12 @@ class _FavoritePageState extends State<FavoritePage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(
+     /* bottomNavigationBar: BottomBar(
         Home: () {
           Navigator.pop(context);
         },
         Favorite: () {},
-      ),
+      ),*/
     );
   }
 }

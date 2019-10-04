@@ -1,11 +1,14 @@
 import 'dart:async';
-
+import 'Mapview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app/Service/Location.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:restaurant_app/component/BottomBar.dart';
 import 'FavoritePage.dart';
+import 'Profile.dart';
+import 'SearchPage.dart';
+import 'ReviewPage.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -13,58 +16,27 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  static double latitude = 23.000;
-  static double longitude = 90.000;
-  Completer<GoogleMapController> _controller = Completer();
+  PageController pageController;
 
-  static final CameraPosition _Coord = CameraPosition(
-    target: LatLng(latitude, longitude),
-    zoom: 14.0,
-  );
+  // final _controller = ScrollController();
 
-  Marker marker;
-  void getMarker(){
-    marker= Marker(
-      markerId: MarkerId('myPosition'),
-      position: LatLng(latitude, longitude),
-      infoWindow: InfoWindow(title: 'my location'),
-    );
+  void JumpPage(int page) {
+    pageController.jumpToPage(page);
+    // _controller.jumpTo(page.toDouble());
   }
 
+  Location location = new Location();
 
-  void getLocation() async {
-    try {
-      Position position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      print('$position');
-      latitude = position.latitude;
-      longitude = position.longitude;
-    } catch (e) {
-      print(e);
-    }
+  void getLocation() {
+    location.getCurrentLocation();
   }
-
-  void _goToTheLake() async {
-    try {
-      GoogleMapController controller = await _controller.future;
-      print('====================================');
-      controller.animateCamera(CameraUpdate.newCameraPosition(_MyPosition));
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  static final CameraPosition _MyPosition = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(latitude, longitude),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-     getLocation();
+    getLocation();
+    pageController = PageController();
   }
 
   void FavoriteButton() {
@@ -78,17 +50,25 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: GoogleMap(
-          initialCameraPosition: _Coord,
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-        ),
+      body: PageView(
+        controller: pageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          ProfilePage(),
+          SearchPage(),
+          Mapview(
+            location: location,
+          ),
+          FavoritePage(),
+          ReviewPage(),
+        ],
       ),
       bottomNavigationBar: BottomBar(
-        Home: _goToTheLake,
-        Favorite: FavoriteButton,
+        Home: () => {JumpPage(0)},
+        Favorite: () => {JumpPage(1)},
+        Natification: () => {JumpPage(2)},
+        profile: () => {JumpPage(3)},
+        Searce: () => {JumpPage(4)},
       ),
     );
   }

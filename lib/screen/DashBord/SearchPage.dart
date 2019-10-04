@@ -260,12 +260,12 @@ class _SearchPageState extends State<SearchPage> {
               ],
             )),
       ),
-      bottomNavigationBar: BottomBar(
+      /*bottomNavigationBar: BottomBar(
         Home: () {
           Navigator.pop(context);
         },
         Favorite: () {},
-      ),
+      ),*/
     );
   }
 }

@@ -180,12 +180,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             )),
       ),
-      bottomNavigationBar: BottomBar(
+     /* bottomNavigationBar: BottomBar(
         Home: () {
           Navigator.pop(context);
         },
         Favorite: () {},
-      ),
+      ),*/
     );
   }
 }

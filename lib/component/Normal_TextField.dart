@@ -8,6 +8,8 @@ class NormalTextField extends StatelessWidget {
     this.validator,
     this.OnSaved,
     this.key,
+    this.focusNode,
+    this.onFieldSubmitted,
   });
 
   final hint;
@@ -15,17 +17,22 @@ class NormalTextField extends StatelessWidget {
 
   final Function validator;
   final Function OnSaved;
+  final Function onFieldSubmitted;
+
   final Key key;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted:onFieldSubmitted,
+      focusNode: focusNode,
       autofocus: true,
       key: key,
       style: KInputTextStyle,
       validator: validator,
       onSaved: OnSaved,
-      textInputAction: TextInputAction.next,
+      textInputAction: TextInputAction.done,
       keyboardType: inputType,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(

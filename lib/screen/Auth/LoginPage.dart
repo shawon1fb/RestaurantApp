@@ -7,8 +7,17 @@ import 'package:restaurant_app/component/password_input_textField.dart';
 import 'package:restaurant_app/screen/DashBord/dashbord.dart';
 import 'package:restaurant_app/Service/Location.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:toast/toast.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final FocusNode _EmailFocus = FocusNode();
+  final FocusNode _PasswordFocus = FocusNode();
+
   final EmailKey = GlobalKey<FormState>();
   final PasswordKey = GlobalKey<FormState>();
   String _email, _password;
@@ -16,7 +25,18 @@ class LoginPage extends StatelessWidget {
   void _submit() {
     if (EmailKey.currentState.validate()) {
       EmailKey.currentState.save();
-      print(_email);
+      if (_email == 'abc@gmail.com' && _password == '1234') {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DashBoard(
+                    /*  latitude: p.latitude,
+                              longitude: p.longitude,*/ /**/
+                    )));
+      } else {
+        Toast.show("Username or Password Incorrect.", context,
+            duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+      }
     }
   }
 
@@ -30,30 +50,34 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Form(
-              key: EmailKey,
+                key: EmailKey,
                 child: Column(
-              children: <Widget>[
-
-                TextFormField(),
-              /*  new NormalTextField(
-                  hint: 'E-mail',
-                  inputType: TextInputType.emailAddress,
-                  validator: (input) =>
-                      !input.contains('@') ? 'Not a valid Email' : null,
-                  OnSaved: (input) => _email = input,
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                new PasswordTextField(
-                  hint: 'Password',
-                  validator: (input) => input.length < 4
-                      ? 'You need at least 4 characters'
-                      : null,
-                  OnSaved: (input) => _password = input,
-                ),*/
-              ],
-            )),
+                  children: <Widget>[
+                    new NormalTextField(
+                      focusNode: _EmailFocus,
+                      onFieldSubmitted: (term) {
+                        _EmailFocus.unfocus();
+                        FocusScope.of(context).requestFocus(_PasswordFocus);
+                      },
+                      hint: 'E-mail',
+                      inputType: TextInputType.emailAddress,
+                      validator: (input) =>
+                          !input.contains('@') ? 'Not a valid Email' : null,
+                      OnSaved: (input) => _email = input,
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    new PasswordTextField(
+                      focusNode: _PasswordFocus,
+                      hint: 'Password',
+                      validator: (input) => input.length < 4
+                          ? 'You need at least 4 characters'
+                          : null,
+                      OnSaved: (input) => _password = input,
+                    ),
+                  ],
+                )),
             Container(
               child: Align(
                 alignment: Alignment.topRight,
@@ -71,6 +95,7 @@ class LoginPage extends StatelessWidget {
               text: 'Log In',
               onPress: () {
                 _submit();
+                print('log in pressed');
               },
             ),
             SizedBox(
