@@ -56,7 +56,7 @@ class _AuthState extends State<Auth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+   //   resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Container(
         padding: EdgeInsets.only(left: 33.0, right: 33.0, top: 33.0),

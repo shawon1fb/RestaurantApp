@@ -8,8 +8,9 @@ import 'package:restaurant_app/screen/DashBord/dashbord.dart';
 import 'package:restaurant_app/Service/Location.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:toast/toast.dart';
+import 'package:restaurant_app/helpers/ensure_visible.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatefulWidget  {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -17,6 +18,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final FocusNode _EmailFocus = FocusNode();
   final FocusNode _PasswordFocus = FocusNode();
+  static final TextEditingController _firstNameController = new TextEditingController();
+  static final TextEditingController _lastNameController = new TextEditingController();
+
 
   final EmailKey = GlobalKey<FormState>();
   final PasswordKey = GlobalKey<FormState>();
@@ -40,6 +44,37 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Future<Null> _focusNodeListener() async {
+    if (_PasswordFocus.hasFocus){
+      print('TextField got the focus');
+    } else {
+      print('TextField lost the focus');
+    }
+
+    if (_EmailFocus.hasFocus){
+      print('Email got the focus');
+    } else {
+      print('Email lost the focus');
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _PasswordFocus.addListener(_focusNodeListener);
+    _EmailFocus.addListener(_focusNodeListener);
+    super.initState();
+
+
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _PasswordFocus.removeListener(_focusNodeListener);
+    super.dispose();
+
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -53,28 +88,34 @@ class _LoginPageState extends State<LoginPage> {
                 key: EmailKey,
                 child: Column(
                   children: <Widget>[
-                    new NormalTextField(
+                    EnsureVisibleWhenFocused(
+                      child: new NormalTextField(
+                        focusNode: _EmailFocus,
+                        onFieldSubmitted: (term) {
+                          _EmailFocus.unfocus();
+                          FocusScope.of(context).requestFocus(_PasswordFocus);
+                        },
+                        hint: 'E-mail',
+                        inputType: TextInputType.emailAddress,
+                        validator: (input) =>
+                            !input.contains('@') ? 'Not a valid Email' : null,
+                        OnSaved: (input) => _email = input,
+                      ),
                       focusNode: _EmailFocus,
-                      onFieldSubmitted: (term) {
-                        _EmailFocus.unfocus();
-                        FocusScope.of(context).requestFocus(_PasswordFocus);
-                      },
-                      hint: 'E-mail',
-                      inputType: TextInputType.emailAddress,
-                      validator: (input) =>
-                          !input.contains('@') ? 'Not a valid Email' : null,
-                      OnSaved: (input) => _email = input,
                     ),
                     SizedBox(
                       height: 15.0,
                     ),
-                    new PasswordTextField(
+                    EnsureVisibleWhenFocused(
+                      child: new PasswordTextField(
+                        focusNode: _PasswordFocus,
+                        hint: 'Password',
+                        validator: (input) => input.length < 4
+                            ? 'You need at least 4 characters'
+                            : null,
+                        OnSaved: (input) => _password = input,
+                      ),
                       focusNode: _PasswordFocus,
-                      hint: 'Password',
-                      validator: (input) => input.length < 4
-                          ? 'You need at least 4 characters'
-                          : null,
-                      OnSaved: (input) => _password = input,
                     ),
                   ],
                 )),
