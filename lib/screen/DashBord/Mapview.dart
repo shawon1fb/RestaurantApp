@@ -4,6 +4,8 @@ import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 import 'package:restaurant_app/Service/Location.dart';
 
+import 'package:restaurant_app/Service/Location.dart';
+
 class Mapview extends StatefulWidget {
   Mapview({this.location});
 
@@ -45,20 +47,17 @@ class _MapviewState extends State<Mapview> {
 
   void getLocation() async {
     try {
-      //   await location.getCurrentLocation();
-      print(' ============ Location ===============');
-      print(widget.location.latitude);
-      print(widget.location.longitude);
-      //==========//
+      Position position = await Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 
-      latitude = widget.location.latitude;
-      longitude = widget.location.longitude;
-      if(longitude==null ||  longitude==null )
-        {
-          latitude=23.0;
-          longitude=90.0;
+      latitude = position.latitude;
+      longitude = position.longitude;
+      if (longitude == null || longitude == null) {
+        latitude = 23.0;
+        longitude = 90.0;
+      }
 
-        }
+      _goToTheLake();
     } catch (e) {
       print(e);
     }

@@ -35,7 +35,7 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getLocation();
+   // getLocation();
     pageController = PageController();
   }
 
@@ -54,11 +54,11 @@ class _DashBoardState extends State<DashBoard> {
         controller: pageController,
         physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
+          Mapview(
+           // location: location,
+          ),
           ProfilePage(),
           SearchPage(),
-          Mapview(
-            location: location,
-          ),
           FavoritePage(),
           ReviewPage(),
         ],
