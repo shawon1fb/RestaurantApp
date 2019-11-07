@@ -7,12 +7,64 @@ import 'package:restaurant_app/component/BottomBar.dart';
 import 'package:restaurant_app/component/search_TextField.dart';
 import 'package:restaurant_app/component/PriceRange_TextField.dart';
 
+import '../../logic/Model_data/FoodListGenerator.dart';
+
+import '../../logic/Model_data/FoolItemList.dart';
+
 class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
+  List<ItemsListCard> ItemListCard_Childen;
+  List<FoodItemCard> ListChilden;
+  ListGenerator Generator = new ListGenerator();
+
+  void OnItemSelect(String Tag) {
+    setState(() {
+      ListChilden = Generator.OnTagSelecte(Tag);
+    });
+  }
+
+  List<ItemsListCard> ItemsListCardGenator() {
+    List<ItemsListCard> list = new List();
+    for (Food_Tag i in Tag_List) {
+      list.add(
+        ItemsListCard(
+          SvgImagePath: i.ImagePath,
+          ItemName: i.TagName,
+          onPress: () {
+            OnItemSelect(i.TagName);
+          },
+        ),
+      );
+    }
+
+    return list;
+  }
+
+  void GetChilden() {
+    ListChilden = Generator.FoodItemCardGenerate();
+    ItemListCard_Childen = ItemsListCardGenator();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetChilden();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("distroyed ====================>>>>");
+    ItemListCard_Childen.clear();
+    ListChilden.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,20 +97,15 @@ class _SearchPageState extends State<SearchPage> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 15),
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(5),
                     ),
                     color: Color(0xFFEDEDED),
                   ),
-
                   child: Container(
                     padding: EdgeInsets.all(10),
-
                     child: Column(
                       children: <Widget>[
                         Row(
@@ -119,141 +166,43 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                   ),
                 ),
-
                 Expanded(
                   child: Container(
                     child: ListView(
                       children: <Widget>[
-
-                        Container(
-                            height: 160,
-                            width: double.infinity,
-                            padding: EdgeInsets.all(0),
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: <Widget>[
-                                ItemsListCard(
-                                  SvgImagePath: 'images/wheat.svg',
-                                  ItemName: 'item',
-                                ),
-                                ItemsListCard(
-                                  SvgImagePath: 'images/SVG/burger.svg',
-                                  ItemName: 'Burger',
-                                ),
-                                ItemsListCard(
-                                  SvgImagePath: 'images/wheat.svg',
-                                  ItemName: 'item',
-                                ),
-                                ItemsListCard(
-                                  SvgImagePath: 'images/SVG/burger.svg',
-                                  ItemName: 'Burger',
-                                ),
-                                ItemsListCard(
-                                  SvgImagePath: 'images/wheat.svg',
-                                  ItemName: 'item',
-                                ),
-                                ItemsListCard(
-                                  SvgImagePath: 'images/SVG/burger.svg',
-                                  ItemName: 'Burger',
-                                ),
-                              ],
-                            )),
-                        SizedBox(
-                          height: 1,
-                        ),
-                        Container(
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Search results',
-                              style: KSearch_resultsStyle,
+                            Container(
+                                height: 160,
+                                width: double.infinity,
+                                padding: EdgeInsets.all(0),
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children:
+                                      /* <Widget>[
+                                        ItemsListCard(
+                                          SvgImagePath: 'images/wheat.svg',
+                                          ItemName: 'item',
+                                          onPress: () => OnItemSelect('Burger'),
+                                        ),
+                                      ] +*/
+                                      ItemListCard_Childen,
+                                )),
+                            SizedBox(
+                              height: 1,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                        FoodItemCard(
-                          imagePath: 'images/berger.png',
-                          Title: 'Burger Quen',
-                          Subtitle: 'Restaurant-Fastfood-Chinese',
-                          RatingPoint: '4.5',
-                          Rating: '(129 rating)',
-                          isopen: 'Open',
-                        ),
-                      ],
+                            Container(
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Search results',
+                                  style: KSearch_resultsStyle,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ] +
+                          ListChilden,
                     ),
                   ),
                 ),

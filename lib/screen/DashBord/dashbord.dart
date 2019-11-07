@@ -57,18 +57,19 @@ class _DashBoardState extends State<DashBoard> {
           Mapview(
            // location: location,
           ),
-          ProfilePage(),
-          SearchPage(),
           FavoritePage(),
-          ReviewPage(),
+         // ProfilePage(),
+          SearchPage(),
+
+        //  ReviewPage(),
         ],
       ),
       bottomNavigationBar: BottomBar(
         Home: () => {JumpPage(0)},
         Favorite: () => {JumpPage(1)},
         Natification: () => {JumpPage(2)},
-        profile: () => {JumpPage(3)},
-        Searce: () => {JumpPage(4)},
+       // profile: () => {JumpPage(3)},
+        //Searce: () => {JumpPage(4)},
       ),
     );
   }

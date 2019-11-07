@@ -93,6 +93,9 @@ class _MapviewState extends State<Mapview> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _goToTheLake,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.blue,
+        elevation: 0,
         child: Icon(
           Icons.gps_fixed,
         ),

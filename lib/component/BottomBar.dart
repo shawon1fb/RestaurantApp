@@ -112,7 +112,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
               ),
             ),
-            Expanded(
+            /*  Expanded(
               flex: 1,
               child: FlatButton(
                 onPressed: widget.profile,
@@ -133,8 +133,10 @@ class _BottomBarState extends State<BottomBar> {
                   ],
                 ),
               ),
-            ),
-            Expanded(
+            ),*/
+
+            ///=====================///
+            /* Expanded(
               flex: 1,
               child: FlatButton(
                 onPressed: widget.Searce,
@@ -155,7 +157,7 @@ class _BottomBarState extends State<BottomBar> {
                   ],
                 ),
               ),
-            ),
+            ),*/
           ],
         ),
       ),

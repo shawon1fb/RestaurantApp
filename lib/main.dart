@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(
+        title: 'Flutter Demo Home Page',
+      ),
     );
   }
 }
@@ -35,8 +37,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var _controller = new PageController();
   bool isvisable = false;
   int currentIndexPage = 0;
+
+  void NextPgae() {
+    _controller.nextPage(
+        duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+  }
 
   void setCurrentPage(int index) {
     setState(() {
@@ -58,15 +66,20 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Expanded(
               flex: 2,
-              child: FlatButton(
-                onPressed: null,
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 0.0, top: 10.0),
-                    child: Text(
-                      'Skip',
-                      style: KskipButton,
+              child: Visibility(
+                visible: !isvisable,
+                child: FlatButton(
+                  onPressed: () {
+                    _controller.jumpToPage(2);
+                  },
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 0.0, top: 10.0),
+                      child: Text(
+                        'Skip',
+                        style: KskipButton,
+                      ),
                     ),
                   ),
                 ),
@@ -76,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
               flex: 6,
               child: Container(
                   child: PageView(
-                controller: PageController(),
+                controller: _controller,
                 children: OnBoardingpageList,
                 onPageChanged: (index) {
                   setCurrentPage(index);
@@ -166,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Visibility(
         visible: !isvisable,
         child: FloatingActionButton(
-          onPressed: null,
+          onPressed: NextPgae,
           disabledElevation: 0.0,
           elevation: 0.0,
           backgroundColor: Theme.of(context).copyWith().backgroundColor,

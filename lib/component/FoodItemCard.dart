@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Constant/constant.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../screen/DashBord/ReviewPage.dart';
 
 class FoodItemCard extends StatefulWidget {
-  FoodItemCard(
-      {this.imagePath,
-      this.Title,
-      this.Subtitle,
-      this.RatingPoint,
-      this.Rating,
-      this.isopen});
+  FoodItemCard({
+    this.imagePath,
+    this.Title,
+    this.Subtitle,
+    this.RatingPoint,
+    this.Rating,
+    this.isopen,
+  });
 
   final imagePath;
   final Title;
@@ -23,6 +26,9 @@ class FoodItemCard extends StatefulWidget {
 }
 
 class _FoodItemCardState extends State<FoodItemCard> {
+  IconData HeartIcon = FontAwesomeIcons.heart;
+  bool b = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,87 +42,106 @@ class _FoodItemCardState extends State<FoodItemCard> {
       child: Row(
         children: <Widget>[
           Expanded(
-            flex: 2,
-            child: Container(
-              height:90, //MediaQuery.of(context).size.height*0.12,
-              width:90,// MediaQuery.of(context).size.height*0.12,
-              padding: EdgeInsets.all(0.0),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    '${widget.imagePath}',
-                  ),
+            flex: 6,
+            child: FlatButton(
+              onPressed: () {
+                print("FoodItemCard");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ReviewPage(),
+                    ));
+              },
+              child: Container(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        height: 90, //MediaQuery.of(context).size.height*0.12,
+                        width: 90, // MediaQuery.of(context).size.height*0.12,
+                        padding: EdgeInsets.all(0.0),
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                              '${widget.imagePath}',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(bottom: 5),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  '${widget.Title}',
+                                  style: KFoodItemCardTitle,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(bottom: 5),
+                              child: Text(
+                                '${widget.Subtitle}',
+                                style: KFoodItemCardSubtitle,
+                              ),
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              textBaseline: TextBaseline.alphabetic,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              textDirection: TextDirection.ltr,
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(
+                                    Icons.star,
+                                    size: 15,
+                                    color: Color(0xffFBBC04),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 2,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    '${widget.RatingPoint}',
+                                    style: KFooditemCardRatingPoint,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    '${widget.Rating}',
+                                    style: KFoodItemCardRating,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Container(
-              padding: EdgeInsets.only(left: 10, right: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(bottom: 5),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        '${widget.Title}',
-                        style: KFoodItemCardTitle,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      '${widget.Subtitle}',
-                      style: KFoodItemCardSubtitle,
-                    ),
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    textBaseline: TextBaseline.alphabetic,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    textDirection: TextDirection.ltr,
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Icon(
-                          Icons.star,
-                          size: 15,
-                          color: Color(0xffFBBC04),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '${widget.RatingPoint}',
-                          style: KFooditemCardRatingPoint,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 3,
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '${widget.Rating}',
-                          style: KFoodItemCardRating,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
               ),
             ),
           ),
@@ -130,11 +155,18 @@ class _FoodItemCardState extends State<FoodItemCard> {
                       alignment: Alignment.topRight,
                       child: IconButton(
                           icon: Icon(
-                            FeatherIcons.heart,
+                            //FeatherIcons.heart,
+                            b
+                                ? FeatherIcons.heart
+                                : FontAwesomeIcons.solidHeart,
                             color: Colors.red,
                             size: 30.0,
                           ),
-                          onPressed: null),
+                          onPressed: () {
+                            setState(() {
+                              b = !b;
+                            });
+                          }),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,

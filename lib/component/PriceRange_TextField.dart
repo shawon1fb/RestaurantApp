@@ -10,8 +10,10 @@ class PriceRangeTextField extends StatelessWidget {
       ),
 
       child: TextField(
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: InputBorder.none,
+
 
           labelStyle: TextStyle(color: Colors.grey),
         ),
