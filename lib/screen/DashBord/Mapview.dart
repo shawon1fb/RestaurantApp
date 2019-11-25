@@ -85,6 +85,8 @@ class _MapviewState extends State<Mapview> {
     return Scaffold(
       body: Container(
         child: GoogleMap(
+          compassEnabled: true,
+          myLocationEnabled: true,
           initialCameraPosition: _Coord,
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
